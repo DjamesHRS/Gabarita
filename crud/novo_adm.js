@@ -72,5 +72,5 @@ function armazenar(){
     }
 
     // [3] Salva a lista completa (com a alteração ou adição)
-    localStorage.setItem("listaAdm", JSON.stringify(listaAdm));    
+    localStorage.setItem("listaAdm", JSON.stringify(listaAdm));
 }
