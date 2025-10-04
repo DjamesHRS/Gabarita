@@ -59,15 +59,15 @@ function armazenar(){
         // É EDIÇÃO (UPDATE)
         var index = localStorage.getItem("indiceEditando");
         
-        // Sobrescreve o objeto antigo pelo novo objeto na posição (índice) correta
+    
         listaAdm[index] = novoAdmin; 
         
-        // LIMPA as chaves temporárias (CRUCIAL!)
+    
         localStorage.removeItem("admEditando");
         localStorage.removeItem("indiceEditando");
         
     } else {
-        // É NOVO CADASTRO (CREATE)
+     
         listaAdm.push(novoAdmin);
     }
 
