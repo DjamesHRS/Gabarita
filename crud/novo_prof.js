@@ -43,9 +43,10 @@ function armazenar() {
         professorEditado.status = status;
         
 
-        if (senha) {
-            professorEditado.senha = '*'.repeat(senha.length); 
-        }
+    if (senha) {
+        professorEditado.senha = senha;
+    }
+
         sessionStorage.removeItem('editId');
         
     } else {
@@ -58,12 +59,13 @@ function armazenar() {
             id: newId,
             nome: nome,
             email: email,
-            senha: senhaMascarada, 
+            senha: senha, // salva a senha real
             cpf: cpf,
             minibiografia: minibiografia,
             data_de_cadastro: new Date().toISOString(),
             status: status
         };
+
         listaProfessores.push(novoProfessor);
         localStorage.setItem('globalLastId', newId);
     }

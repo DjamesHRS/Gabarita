@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("enviar").addEventListener("click", function(){
     armazenar();
-    window.location.href = "adm_home.html";
+    window.location.href = "login.html";
 });
 
 function armazenar(){

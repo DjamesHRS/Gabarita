@@ -6,6 +6,7 @@
     <title>Professores</title>
 </head>
 <body>
+    <div id="nomeUsuario"></div>
     <div>
         <button id="novo" type="button">Add Professor</button>
     </div>
@@ -14,6 +15,23 @@
         <h2>Lista de Professores</h2>
         <div id="lista"></div>
     </div>
+    <button onclick="logout()">sair</button>
     <script src="prof.js"></script>
+        <script>
+        window.onload = function() {
+            const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+            if (!usuario) {
+                window.location.href = "login.html";
+            } else {
+                document.getElementById("nomeUsuario").innerText = usuario.nome;
+            }
+        };
+
+        function logout() {
+            localStorage.removeItem("usuarioLogado");
+            window.location.href = "login.html";
+        }
+
+    </script>
 </body>
 </html>
