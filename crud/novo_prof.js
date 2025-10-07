@@ -5,18 +5,20 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('h1').textContent = "Editar Professor";
 
         const listaProfessoresKey = "listaProfessores";
-        const listaProfessores = JSON.parse(localStorage.getItem(listaProfessoresKey));
-        
+        const listaProfessores = JSON.parse(localStorage.getItem(listaProfessoresKey));       
         const professorParaEditar = listaProfessores[editId];
 
         document.getElementById('nome').value = professorParaEditar.nome;
         document.getElementById('email').value = professorParaEditar.email;
- 
         document.getElementById('cpf').value = professorParaEditar.cpf;
         document.getElementById('minibiografia').value = professorParaEditar.minibiografia;
         document.getElementById('status').value = professorParaEditar.status;
     }
 });
+
+function calcularProximoIdProf(lista) {
+    return String(lista.length + 1);
+}
 
 document.getElementById("enviar").addEventListener("click", function() {
     armazenar();
@@ -44,28 +46,23 @@ function armazenar() {
         
 
     if (senha) {
-        professorEditado.senha = senha;
+        const senhaMascarada = '*'.repeat(senha.length);
+        professorEditado.senha = senhaMascarada;
     }
-
-        sessionStorage.removeItem('editId');
-        
+        sessionStorage.removeItem('editId'); 
     } else {
         const senhaMascarada = '*'.repeat(senha.length);
-
-        let lastId = parseInt(localStorage.getItem('globalLastId') || '0');
-        const newId = lastId + 1;
-        
+        const newId = calcularProximoIdProf();
         var novoProfessor = {
             id: newId,
             nome: nome,
             email: email,
-            senha: senha, // salva a senha real
+            senha: senhaMascarada, 
             cpf: cpf,
             minibiografia: minibiografia,
             data_de_cadastro: new Date().toISOString(),
             status: status
         };
-
         listaProfessores.push(novoProfessor);
         localStorage.setItem('globalLastId', newId);
     }
@@ -73,3 +70,4 @@ function armazenar() {
     localStorage.setItem(listaProfessoresKey, JSON.stringify(listaProfessores));
     window.location.href = "prof_home.html"; 
 }
+
