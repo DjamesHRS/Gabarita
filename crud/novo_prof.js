@@ -83,10 +83,14 @@ function armazenar() {
     // Lógica de Criação
     } else {
         const senhaMascarada = '*'.repeat(senha.length);
+<<<<<<< HEAD
         
         // Usa a nova função segura para gerar um ID
         const newId = gerarNovoId();
 
+=======
+        const newId = calcularProximoIdProf(listaProfessores);
+>>>>>>> 84734234bdc96d57801cd9af05f23fce0eff56ef
         var novoProfessor = {
             id: newId,
             nome: nome,
