@@ -52,7 +52,7 @@ function armazenar() {
         sessionStorage.removeItem('editId'); 
     } else {
         const senhaMascarada = '*'.repeat(senha.length);
-        const newId = calcularProximoIdProf();
+        const newId = calcularProximoIdProf(listaProfessores);
         var novoProfessor = {
             id: newId,
             nome: nome,
