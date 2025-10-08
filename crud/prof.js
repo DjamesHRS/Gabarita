@@ -22,7 +22,7 @@ function carregaItens() {
                 <th>Status</th>
                 <th>Data Cadastro</th>
                 <th>Minibiografia</th>
-                <th>Senha (Hash)</th> </tr>
+                <th>Senha</th> </tr>
     `;
 
     for (let i = 0; i < lista.length; i++) {
