@@ -26,9 +26,7 @@ function armazenar() {
 
     const nome = document.getElementById("nome").value;
     const descricao = document.getElementById("descricao").value;
-    const penis = document.getElementById('penis').value;
 
-    
 
     if (editId !== null) {
         const disciplinaEditada = listaDisciplinas[editId];
