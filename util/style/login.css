@@ -1,0 +1,68 @@
+ body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #005f73, #94d2bd);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 10;
+    }
+
+    .logo {
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      padding-top: 100px;
+    }
+
+    .login-card {
+      position: relative; 
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .card {
+      border-radius: 20px;
+      position: relative;
+    }
+
+    .mascote {
+    position: absolute;
+    bottom: -29%; 
+    right: -37%;
+    width: 40vw;      
+    max-width: 250px; 
+    z-index: 5;
+    pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+    .mascote {
+        width: 30vw;   
+        bottom: -10%;
+        right: -10%;
+    }
+    }
+
+    @media (max-width: 480px) {
+    .mascote {
+        width: 25vw;   
+        bottom: -5%;
+        right: -5%;
+    }
+    }
