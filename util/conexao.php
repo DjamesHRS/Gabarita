@@ -5,7 +5,7 @@ class Conexao {
     // Método para conectar ao banco de dados
     static function conectar() {
         try {
-            $endereco = "mysql:host=localhost;dbname=gabarita;port=3307";
+            $endereco = "mysql:host=localhost;dbname=gabarita;port=3306";
             $usuariobd = "root";
             $senhabd = "";
             self::$conn = new PDO($endereco, $usuariobd, $senhabd);
