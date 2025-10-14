@@ -42,3 +42,6 @@ async function cadastroAluno() {
 document.getElementById("enviar").addEventListener("click", function() {
   cadastroAluno();
 });
+
+
+
