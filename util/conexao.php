@@ -5,15 +5,15 @@ class Conexao {
     // Método para conectar ao banco de dados
     static function conectar() {
         try {
-            $endereco = "mysql:host=localhost;dbname=gabarita;port=3306";
+            $endereco = "mysql:host=localhost;dbname=gabarita;port=3307";
             $usuariobd = "root";
             $senhabd = "";
             self::$conn = new PDO($endereco, $usuariobd, $senhabd);
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Erro na conexão com o banco de dados: " . $e->getMessage());
+            throw new Exception("Erro na conexão com o banco de dados: " . $e->getMessage());
         }
-    }    
+    }       
 
     // Método para executar queries sem parâmetros
     static function executar($query) {
