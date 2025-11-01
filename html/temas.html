@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarita - Explore Nossos Temas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+<body class="gab-bg-gradient">
+
+    <header class="gab-header shadow-lg p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="Logo Gabarita" class="gab-logo me-3" style="width: 40px; height: 40px;">
+                <h1 class="gab-title-animated mb-0 fw-black text-white">
+                    <span class="animated-text" data-text="Explore Nossos Temas">Explore Nossos Temas</span>
+                </h1>
+            </div>
+
+            <div class="gab-search-container d-none d-md-block flex-grow-1 mx-5">
+                <div class="input-group">
+                    <span class="input-group-text gab-input-luminous-addon"><i class="fas fa-search gab-text-luminous"></i></span>
+                    <input type="text" class="form-control gab-input-luminous" id="theme-search" placeholder="Busque por temas, palavras-chave...">
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <a href="/gerar" class="btn gab-btn-primary me-3 d-none d-lg-block">
+                    <i class="fas fa-magic me-2"></i>Gerar Proposta
+                </a>
+                
+                <a href="/perfil" class="gab-profile-icon" title="Meu Perfil">
+                    <img src="dolphinicon.png" alt="Dolphin Perfil" class="rounded-circle" style="width: 40px; height: 40px; border: 2px solid #94d2bd;">
+                </a>
+            </div>
+        </div>
+        
+        <div class="gab-search-container d-md-none mt-2">
+            <div class="input-group">
+                <span class="input-group-text gab-input-luminous-addon"><i class="fas fa-search gab-text-luminous"></i></span>
+                <input type="text" class="form-control gab-input-luminous" placeholder="Busque por temas...">
+            </div>
+        </div>
+        
+    </header>
+
+    <main class="container-fluid py-5">
+        
+        <section class="row mb-5 gab-hero">
+            <div class="col-lg-8">
+                <div class="gab-panel-luminous p-4 p-lg-5">
+                    <h2 class="fw-black text-white mb-3">Bem-vindo(a) à Gabarita!</h2>
+                    <p class="text-light fs-5 fw-regular">Aqui, a **Inteligência Artificial** se une à curadoria de educadores para turbinar sua nota. Escolha um tema e comece a praticar!</p>
+                    <a href="/correcao" class="btn gab-btn-secondary mt-3"><i class="fas fa-feather-alt me-2"></i>Submeter Redação Agora</a>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex align-items-end justify-content-end">
+                <img src="heroimage.png" alt="Mascote Dolphin guiando" class="gab-hero-image" style="max-height: 300px;">
+            </div>
+        </section>
+
+        <section class="row mb-4">
+            <div class="col-12">
+                <div class="gab-panel-luminous p-3 d-flex flex-wrap align-items-center">
+                    <span class="text-white me-3 fw-light">Filtrar por Categoria:</span>
+                    <button class="btn gab-filter-btn active me-2 mb-2 mb-sm-0" data-filter="all">Todas</button>
+                    <button class="btn gab-filter-btn me-2 mb-2 mb-sm-0" data-filter="social">Sociais</button>
+                    <button class="btn gab-filter-btn me-2 mb-2 mb-sm-0" data-filter="ciencia">Ciência</button>
+                    <button class="btn gab-filter-btn me-2 mb-2 mb-sm-0" data-filter="cultura">Cultura</button>
+                    </div>
+            </div>
+        </section>
+
+        <section class="row" id="themes-grid">
+            <div class="col-12">
+                <h3 class="text-white fw-black mb-4"><i class="fas fa-scroll me-2 gab-text-luminous"></i>Temas Populares</h3>
+            </div>
+            
+            <div class="col-12 text-center my-5" id="loading-state" style="display: none;">
+                <div class="spinner-border gab-text-luminous" role="status">
+                    <span class="visually-hidden">Carregando Temas...</span>
+                </div>
+                <p class="text-white mt-2 fw-light">A Gabarita está carregando os temas mais relevantes para você...</p>
+            </div>
+
+            <div id="theme-cards-container" class="row">
+                <div class="col-xl-3 col-md-4 col-sm-6 mb-4 theme-card" data-category="social">
+                    <div class="gab-card-luminous p-3 h-100 d-flex flex-column">
+                        <h4 class="fw-black text-white mb-2">Desafios da Cibersegurança no Brasil</h4>
+                        <p class="text-light fs-6 fw-regular flex-grow-1">Ameaças digitais e a necessidade de educação e políticas públicas eficazes.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="badge gab-badge-theme">Social</span>
+                            <a href="#" class="btn btn-sm gab-btn-action">Estudar Tema <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-md-4 col-sm-6 mb-4 theme-card" data-category="ciencia">
+                    <div class="gab-card-luminous p-3 h-100 d-flex flex-column">
+                        <h4 class="fw-black text-white mb-2">O futuro da Edição Genética (CRISPR)</h4>
+                        <p class="text-light fs-6 fw-regular flex-grow-1">Implicações éticas e científicas das novas biotecnologias.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="badge gab-badge-theme bg-info">Ciência</span>
+                            <a href="#" class="btn btn-sm gab-btn-action">Estudar Tema <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-4 col-sm-6 mb-4 theme-card" data-category="cultura">
+                    <div class="gab-card-luminous p-3 h-100 d-flex flex-column">
+                        <h4 class="fw-black text-white mb-2">Preservação do Patrimônio Imaterial</h4>
+                        <p class="text-light fs-6 fw-regular flex-grow-1">Valorização das tradições e culturas regionais brasileiras.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="badge gab-badge-theme bg-warning">Cultura</span>
+                            <a href="#" class="btn btn-sm gab-btn-action">Estudar Tema <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 text-center my-5" id="empty-state" style="display: none;">
+                    <img src="dolphin.png" alt="Dolphin Triste" style="width: 150px; opacity: 0.8;">
+                    <h3 class="text-white mt-3 fw-black">Ops! Nenhum tema encontrado.</h3>
+                    <p class="text-light fw-regular">Tente outra palavra-chave ou remova os filtros.</p>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+/* Arquivo: style.css */
+
+/* --- Variáveis de Cores (Paleta Gabarita) --- */
+:root {
+    --gab-primary: #005f73;        
+    --gab-secondary: #94d2bd;      
+    --gab-accent: #2f74a4;         
+    --gab-dark: #0000;           
+    --gab-light: #FFFFFF;        
+    --gab-focus: #00618a;          
+    --gab-text-luminous: #94d2bd;
+    --gab-blur-intensity: 10px;    
+}
+
+/* --- Tipografia (Simulação HK Grotesk) --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    min-height: 100vh;
+}
+
+.fw-black { font-weight: 900 !important; } /* Para títulos de impacto */
+.fw-regular { font-weight: 400 !important; } /* Para corpo de texto */
+.fw-light { font-weight: 300 !important; } /* Para info secundária */
+.fw-extra-light { font-weight: 200 !important; }
+
+/* --- Fundo com Gradiente Animado (Base para o JS) --- */
+.gab-bg-gradient {
+    /* Gradiente inicial (para fallback) */
+    background: linear-gradient(135deg, var(--gab-primary), var(--gab-accent));
+    background-size: 400% 400%;
+    /* Animação será controlada pelo JavaScript */
+}
+
+/* --- Estilo dos Componentes (Transparência, Bordas Luminosas) --- */
+
+/* Painel/Cartão Translúcido */
+.gab-panel-luminous {
+    background: rgba(255, 255, 255, 0.15); /* bg-white/30 (Simulação) */
+    border: 1px solid var(--gab-secondary);
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(var(--gab-blur-intensity));
+    -webkit-backdrop-filter: blur(var(--gab-blur-intensity));
+    transition: all 0.3s ease;
+}
+.gab-panel-luminous:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid var(--gab-text-luminous);
+    box-shadow: 0 0 15px rgba(148, 210, 189, 0.8); /* Efeito luminoso suave */
+}
+
+/* Card de Tema */
+.gab-card-luminous {
+    @extend .gab-panel-luminous; /* Extende as propriedades do painel */
+    background: rgba(0, 0, 0, 0.2); /* Mais escuro para contraste */
+    min-height: 180px;
+}
+.gab-card-luminous:hover {
+    border-color: var(--gab-text-luminous);
+    transform: translateY(-5px); /* Microinteração de leve ascensão */
+}
+
+/* Input/Search com Estilo Luminoso */
+.gab-input-luminous {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid var(--gab-secondary);
+    color: var(--gab-light) !important;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.gab-input-luminous:focus {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: var(--gab-text-luminous) !important;
+    box-shadow: 0 0 0 0.25rem rgba(148, 210, 189, 0.5) !important;
+    color: var(--gab-light) !important;
+}
+.gab-input-luminous::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-weight: 300;
+}
+.gab-input-luminous-addon {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--gab-secondary);
+    border-right: none;
+    color: var(--gab-text-luminous);
+    border-radius: 8px 0 0 8px;
+}
+
+/* --- Botões de Ação --- */
+.gab-btn-primary {
+    background-color: var(--gab-accent);
+    border-color: var(--gab-accent);
+    color: var(--gab-light);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.gab-btn-primary:hover {
+    background-color: #3b88c4; /* Tom mais claro do ACCENT */
+    border-color: #3b88c4;
+    box-shadow: 0 0 10px rgba(47, 116, 164, 0.7);
+}
+
+.gab-btn-secondary {
+    background-color: var(--gab-secondary);
+    border-color: var(--gab-secondary);
+    color: var(--gab-primary);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.gab-btn-secondary:hover {
+    background-color: #a7e3d1; /* Tom mais claro do SECONDARY */
+    border-color: #a7e3d1;
+    box-shadow: 0 0 10px rgba(148, 210, 189, 0.7);
+}
+
+.gab-btn-action {
+    background: none;
+    border: 1px solid var(--gab-text-luminous);
+    color: var(--gab-text-luminous);
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+.gab-btn-action:hover {
+    background-color: rgba(148, 210, 189, 0.2);
+    color: var(--gab-light);
+}
+
+/* Botões de Filtro */
+.gab-filter-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid transparent;
+    color: var(--gab-light);
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+.gab-filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.gab-filter-btn.active {
+    background-color: var(--gab-text-luminous);
+    border-color: var(--gab-text-luminous);
+    color: var(--gab-primary); /* Texto escuro no fundo claro */
+    font-weight: 600;
+}
+
+/* Badge de Tema */
+.gab-badge-theme {
+    background-color: var(--gab-primary);
+    color: var(--gab-secondary);
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid var(--gab-secondary);
+}
+
+/* --- Elementos de Layout Específicos --- */
+
+/* Header Exclusivo */
+.gab-header {
+    background: rgba(0, 0, 0, 0.3); /* Base mais escura para o header */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    border-bottom: 1px solid rgba(148, 210, 189, 0.3);
+}
+
+/* Título Animado (Simulação de Framer Motion/Anime.js) */
+.gab-title-animated {
+    display: inline-block;
+    overflow: hidden; /* Para simular o efeito "digitando" ou wipe */
+}
+
+/* Mascote Dolphin no Hero (Ancorado) */
+.gab-hero-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Garante que a imagem cabe e se ajusta */
+    /* object-position: right bottom; Simulado com flexbox no HTML */
+    filter: drop-shadow(0 0 10px rgba(148, 210, 189, 0.5));
+}
+
+/* Efeito Luminoso para Ícones e Textos */
+.gab-text-luminous {
+    color: var(--gab-text-luminous) !important;
+    text-shadow: 0 0 5px rgba(148, 210, 189, 0.7);
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .gab-search-container.d-md-block {
+        display: none !important; /* Esconde a busca do header no mobile */
+    }
+    .gab-hero-image {
+        max-height: 150px !important;
+    }
+}
+
+/* Foco de Acessibilidade (Alto Contraste) */
+*:focus {
+    outline: 2px solid var(--gab-focus) !important;
+    outline-offset: 2px;
+}
+/* --- Estilos Específicos para Correção (Adicionar ao style.css) --- */
+
+/* Navegação em Abas (Estilo Gabarita) */
+.gab-nav-pills .nav-link {
+    color: var(--gab-text-luminous);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(148, 210, 189, 0.3);
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
+}
+.gab-nav-pills .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.gab-nav-pills .nav-link.active {
+    background-color: var(--gab-text-luminous); /* Fundo claro quando ativo */
+    color: var(--gab-primary); /* Texto escuro */
+    font-weight: 600;
+    border-color: var(--gab-text-luminous);
+}
+
+/* Input File Customizado (Mantendo o estilo luminoso) */
+.gab-input-luminous-file {
+    @extend .gab-input-luminous; /* Reutiliza o estilo base */
+    cursor: pointer;
+}
+
+/* Área de Pré-visualização */
+.gab-panel-preview {
+    border: 1px dashed var(--gab-text-luminous);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Barra de Progresso (Visual Luminoso) */
+.gab-progress-bar {
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--gab-text-luminous);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.gab-progress-bar-fill {
+    background-color: var(--gab-accent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Alertas Estilizados */
+.gab-alert-info {
+    background-color: rgba(148, 210, 189, 0.2);
+    color: var(--gab-text-luminous);
+    border-left: 5px solid var(--gab-text-luminous);
+}
+.gab-alert-danger {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ffcccc;
+    border-left: 5px solid #ff0000;
+}
+/* --- Estilos Específicos para Histórico (Adicionar ao style.css) --- */
+
+/* Tabela de Histórico (Visual Luminoso) */
+.gab-table-historico {
+    color: var(--gab-light);
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Espaço entre as linhas */
+}
+
+/* Estilo das Linhas (Transparência sutil no hover) */
+.gab-table-historico tbody tr {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.gab-table-historico tbody tr:hover {
+    background: rgba(148, 210, 189, 0.1);
+}
+
+/* Alinhamento dos Dados */
+.gab-table-historico td, .gab-table-historico th {
+    padding: 0.75rem 1rem !important;
+    vertical-align: middle;
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+/* Modal de Relatório (Fundo escuro, painel luminoso) */
+.modal-content.gab-modal-luminous {
+    background: rgba(0, 0, 0, 0.8); /* Fundo do modal mais escuro */
+    backdrop-filter: blur(var(--gab-blur-intensity));
+    -webkit-backdrop-filter: blur(var(--gab-blur-intensity));
+    border: 1px solid var(--gab-text-luminous);
+    border-radius: 12px;
+    color: var(--gab-light);
+}
+
+.gab-modal-luminous .modal-header,
+.gab-modal-luminous .modal-footer {
+    border-color: rgba(148, 210, 189, 0.3);
+}
+
+.gab-modal-luminous .btn-close-white {
+    filter: invert(1); /* Deixa o X do fechar branco no fundo escuro */
+}
+
+.gab-hr {
+    border-top: 1px solid rgba(148, 210, 189, 0.3);
+    opacity: 0.5;
+    margin: 1.5rem 0;
+}
+/* --- Estilos Específicos para Perfil (Adicionar ao style.css) --- */
+
+/* Linha do Tempo (Timeline) */
+#activity-timeline {
+    position: relative;
+    padding-left: 20px; /* Espaço para a linha vertical */
+}
+
+/* Linha Vertical Luminosa */
+#activity-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background-color: rgba(148, 210, 189, 0.4);
+    box-shadow: 0 0 5px rgba(148, 210, 189, 0.7);
+}
+
+/* Item da Linha do Tempo */
+.timeline-item {
+    position: relative;
+    margin-bottom: 25px;
+    padding-left: 25px;
+}
+
+/* Ponto Luminoso (Dot) */
+.timeline-dot {
+    position: absolute;
+    left: -8px;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--gab-focus);
+    border: 3px solid var(--gab-primary);
+    box-shadow: 0 0 10px var(--gab-focus);
+}
+
+.timeline-body {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: background 0.3s ease;
+    border-left: 3px solid var(--gab-text-luminous);
+}
+
+.timeline-body:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+/* --- Estilos Específicos para Geração (Adicionar ao style.css) --- */
+
+/* Ajuste para SELECTs - Herdam o gab-input-luminous */
+.gab-input-luminous.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2394d2bd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important; /* Cor luminosa na seta */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--gab-light) !important;
+    padding-right: 2.5rem; /* Espaço para a seta */
+}
+
+/* Cor das opções no select (pode ser inconsistente entre navegadores, mas tentamos escurecer) */
+.gab-input-luminous option {
+    background-color: var(--gab-primary); /* Fundo escuro para leitura */
+    color: var(--gab-light);
+}
+
+/* Estilo para Checkbox */
+.form-check-input {
+    border-color: var(--gab-secondary);
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: var(--gab-text-luminous);
+    border-color: var(--gab-text-luminous);
+}
+
+/* Feedback de Validação Luminoso */
+.needs-validation :invalid ~ .invalid-feedback {
+    color: #ffcccc; /* Tom claro de vermelho */
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+/* --- Estilos Específicos para Simulado (Adicionar ao style.css) --- */
+
+/* Painel Menor/Agrupamento de Campos */
+.gab-panel-mini {
+    background: rgba(255, 255, 255, 0.08); /* Transparência um pouco menor */
+    border: 1px solid rgba(148, 210, 189, 0.2);
+    border-radius: 8px;
+}
+
+/* Checkbox Estilizado com Efeito Luminoso */
+.gab-check-luminous .form-check-input {
+    border-color: var(--gab-secondary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.gab-check-luminous .form-check-input:checked {
+    background-color: var(--gab-text-luminous);
+    border-color: var(--gab-text-luminous);
+    /* Ajuste para garantir que o checkmark seja visível (não precisa de override se o Bootstrap for bem configurado) */
+}
+
+.gab-check-luminous .form-check-label:hover {
+    color: var(--gab-text-luminous) !important;
+}
+
+/* Feedback para Checkbox Group (para o JS usar) */
+#disciplinaFeedback {
+    display: none; /* Controlado pelo JS */
+    color: #ffcccc; 
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+/* --- Estilos Específicos para Dashboard Professor (Adicionar ao style.css) --- */
+
+/* Navegação Lateral do Dashboard (Desktop) */
+.gab-nav-dashboard .nav-link {
+    color: var(--gab-light);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(148, 210, 189, 0.3);
+    margin-bottom: 5px;
+    text-align: left;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.gab-nav-dashboard .nav-link.active {
+    background-color: var(--gab-text-luminous);
+    color: var(--gab-primary);
+    font-weight: bold;
+    border-color: var(--gab-text-luminous);
+    box-shadow: 0 0 10px rgba(148, 210, 189, 0.7);
+}
+.gab-nav-dashboard .nav-link:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Status de Usuário */
+.badge-active { background-color: #38c172; color: #fff; }
+.badge-inactive { background-color: #e3342f; color: #fff; }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarita - Submissão de Redação</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="gab-bg-gradient">
+
+    <header class="gab-header shadow-lg p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="Logo Gabarita" class="gab-logo me-3" style="width: 40px; height: 40px;">
+                <h1 class="gab-title-static mb-0 fw-black text-white">Submeter Redação</h1>
+            </div>
+            <a href="/perfil" class="gab-profile-icon" title="Meu Perfil">
+                <img src="dolphinicon.png" alt="Dolphin Perfil" class="rounded-circle" style="width: 40px; height: 40px; border: 2px solid #94d2bd;">
+            </a>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        
+        <div class="row justify-content-center">
+            
+            <div class="col-lg-10 col-xl-8">
+                
+                <div class="gab-panel-luminous p-4 p-md-5">
+                    
+                    <div class="d-flex align-items-start mb-4">
+                        <img src="dolphingredacao.png" alt="Dolphin Redação" class="me-3 d-none d-sm-block" style="width: 60px; height: auto;">
+                        <div>
+                            <h2 class="fw-black text-white mb-1"><i class="fas fa-edit me-2 gab-text-luminous"></i>Correção Inteligente</h2>
+                            <p class="text-light fw-light">Escolha o seu método e envie sua redação. A IA da Gabarita fará a primeira análise em instantes.</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="nav nav-pills nav-fill mb-4 gab-nav-pills" id="correctionTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload" type="button" role="tab" aria-controls="upload" aria-selected="true"><i class="fas fa-upload me-2"></i>Upload de Arquivo</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="digitacao-tab" data-bs-toggle="tab" data-bs-target="#digitacao" type="button" role="tab" aria-controls="digitacao" aria-selected="false"><i class="fas fa-keyboard me-2"></i>Digitação Direta</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="foto-tab" data-bs-toggle="tab" data-bs-target="#foto" type="button" role="tab" aria-controls="foto" aria-selected="false"><i class="fas fa-camera me-2"></i>Foto (OCR)</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content" id="correctionTabsContent">
+                        
+                        <div class="tab-pane fade show active" id="upload" role="tabpanel" aria-labelledby="upload-tab">
+                            <form id="uploadForm">
+                                <div class="mb-4">
+                                    <label for="fileUpload" class="form-label text-white fw-regular">Selecione seu arquivo (.pdf, .doc, .docx)</label>
+                                    <input class="form-control gab-input-luminous-file" type="file" id="fileUpload" accept=".pdf, .doc, .docx">
+                                    <div id="fileHelp" class="form-text text-light fw-light mt-2">Tamanho máximo: 5MB. A pré-visualização aparecerá abaixo.</div>
+                                </div>
+                                
+                                <div id="previewContainer" class="gab-panel-preview p-3 mb-3" style="display: none;">
+                                    <p class="text-white fw-regular mb-1"><i class="fas fa-file-alt me-2 gab-text-luminous"></i>Pré-visualização do Arquivo:</p>
+                                    <div id="fileDetails" class="text-light fw-light small"></div>
+                                </div>
+                                <div id="validationMessage" class="alert d-none mt-3" role="alert"></div>
+                                
+                                <button type="submit" class="btn gab-btn-primary w-100" id="submitUpload"><i class="fas fa-paper-plane me-2"></i>Enviar para Correção</button>
+                            </form>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="digitacao" role="tabpanel" aria-labelledby="digitacao-tab">
+                            <form id="digitacaoForm">
+                                <div class="mb-4">
+                                    <label for="redacaoTexto" class="form-label text-white fw-regular">Digite sua redação aqui (Mín. 7 linhas)</label>
+                                    <textarea class="form-control gab-input-luminous" id="redacaoTexto" rows="10" placeholder="Comece a digitar o texto da sua redação..."></textarea>
+                                </div>
+                                <div id="charCount" class="form-text text-light fw-light mb-3 text-end">0 caracteres.</div>
+                                <button type="submit" class="btn gab-btn-primary w-100"><i class="fas fa-paper-plane me-2"></i>Enviar Texto</button>
+                            </form>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="foto" role="tabpanel" aria-labelledby="foto-tab">
+                            <div class="text-center text-white p-4 gab-card-luminous">
+                                <i class="fas fa-camera fa-3x gab-text-luminous mb-3"></i>
+                                <h4 class="fw-black text-white">Capture sua Redação</h4>
+                                <p class="fw-light">Para esta funcionalidade, envie uma foto com boa iluminação e foco. A Gabarita fará a conversão do texto (OCR).</p>
+                                <input class="form-control gab-input-luminous-file mt-3" type="file" id="photoUpload" accept="image/*" capture="camera">
+                                <button type="button" class="btn gab-btn-secondary mt-3"><i class="fas fa-camera-retro me-2"></i>Abrir Câmera/Galeria</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+                <div id="statusSection" class="gab-panel-luminous mt-4 p-4" style="display: none;">
+                    <h3 class="fw-black text-white mb-3"><i class="fas fa-sync-alt fa-spin me-2 gab-text-luminous"></i>Processando sua Redação</h3>
+                    
+                    <div id="statusMessage" class="alert gab-alert-info">
+                        Aguarde um momento! O webhook no n8n foi acionado.
+                    </div>
+                    
+                    <div class="progress gab-progress-bar">
+                        <div id="progressBar" class="progress-bar gab-progress-bar-fill" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div>
+                    
+                    <p id="etaText" class="text-light fw-light mt-2 text-end small">Tempo estimado: ~2 minutos.</p>
+                </div>
+                
+                <div id="errorSection" class="gab-panel-luminous mt-4 p-4" style="display: none;">
+                    <h3 class="fw-black text-danger mb-3"><i class="fas fa-exclamation-triangle me-2"></i>Erro na Submissão</h3>
+                    <div id="errorMessage" class="alert gab-alert-danger">
+                        Detalhe do erro.
+                    </div>
+                    <button type="button" class="btn gab-btn-secondary" onclick="resetCorrectionForm()">Tentar Novamente</button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script-correcao.js"></script>
+    <script>
+        // Função para resetar o estado (chamada no botão Tentar Novamente)
+        function resetCorrectionForm() {
+            document.getElementById('statusSection').style.display = 'none';
+            document.getElementById('errorSection').style.display = 'none';
+            document.getElementById('uploadForm').style.display = 'block';
+            document.getElementById('fileUpload').value = ''; // Limpa o input
+            document.getElementById('validationMessage').classList.add('d-none');
+            document.getElementById('previewContainer').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

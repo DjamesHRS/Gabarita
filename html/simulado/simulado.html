@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarita - Montar Simulado Customizado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="gab-bg-gradient">
+
+    <header class="gab-header shadow-lg p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="Logo Gabarita" class="gab-logo me-3" style="width: 40px; height: 40px;">
+                <h1 class="gab-title-static mb-0 fw-black text-white">Montar Simulado</h1>
+            </div>
+            <a href="/perfil" class="gab-profile-icon" title="Meu Perfil">
+                <img src="dolphinicon.png" alt="Dolphin Perfil" class="rounded-circle" style="width: 40px; height: 40px; border: 2px solid #94d2bd;">
+            </a>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        
+        <div class="row justify-content-center">
+            
+            <div class="col-lg-8">
+                <div class="gab-panel-luminous p-4 p-md-5">
+                    
+                    <h2 class="fw-black text-white mb-3"><i class="fas fa-clipboard-list me-2 gab-text-luminous"></i>Simulado sob Medida</h2>
+                    <p class="text-light fw-light mb-4">Selecione suas disciplinas, defina o tamanho e a dificuldade para gerar um simulado perfeito.</p>
+
+                    <form id="simuladoForm" class="row g-4 needs-validation" novalidate>
+                        
+                        <div class="col-12 gab-panel-mini p-3">
+                            <label class="form-label text-white fw-black mb-3">Disciplinas Envolvidas</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check gab-check-luminous mb-2">
+                                        <input class="form-check-input" type="checkbox" value="linguagens" id="checkLinguagens" name="disciplina" required>
+                                        <label class="form-check-label text-light fw-regular" for="checkLinguagens">Linguagens e Códigos</label>
+                                    </div>
+                                    <div class="form-check gab-check-luminous mb-2">
+                                        <input class="form-check-input" type="checkbox" value="humanas" id="checkHumanas" name="disciplina">
+                                        <label class="form-check-label text-light fw-regular" for="checkHumanas">Ciências Humanas</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check gab-check-luminous mb-2">
+                                        <input class="form-check-input" type="checkbox" value="natureza" id="checkNatureza" name="disciplina">
+                                        <label class="form-check-label text-light fw-regular" for="checkNatureza">Ciências da Natureza</label>
+                                    </div>
+                                    <div class="form-check gab-check-luminous mb-2">
+                                        <input class="form-check-input" type="checkbox" value="matematica" id="checkMatematica" name="disciplina">
+                                        <label class="form-check-label text-light fw-regular" for="checkMatematica">Matemática e suas Tecnologias</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback mt-2" id="disciplinaFeedback">
+                                Selecione pelo menos uma disciplina.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="numQuestoes" class="form-label text-white fw-regular">Quantidade de Questões</label>
+                            <input type="number" class="form-control gab-input-luminous" id="numQuestoes" min="5" max="90" value="10" required>
+                            <div class="invalid-feedback">
+                                O simulado deve ter entre 5 e 90 questões.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="tempoLimite" class="form-label text-white fw-regular">Tempo Limite (em minutos)</label>
+                            <input type="number" class="form-control gab-input-luminous" id="tempoLimite" min="10" max="300" value="30" required>
+                            <div class="form-text text-light fw-light">Sugerido: 3 minutos por questão.</div>
+                            <div class="invalid-feedback">
+                                Defina um tempo limite razoável.
+                            </div>
+                        </div>
+
+                        <div class="col-12 gab-panel-mini p-3">
+                            <label for="dificuldadeSimulado" class="form-label text-white fw-black mb-3">Nível de Dificuldade Predominante</label>
+                            <select class="form-select gab-input-luminous" id="dificuldadeSimulado" required>
+                                <option value="" selected disabled>Escolha a dificuldade...</option>
+                                <option value="baixa">Baixa (Revisão)</option>
+                                <option value="media">Média (Padrão Vestibular)</option>
+                                <option value="alta">Alta (Maioria Inédita ou Complexa)</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Por favor, selecione a dificuldade.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="termosCheck" required>
+                                <label class="form-check-label text-light fw-light small" for="termosCheck">
+                                    Confirmo que a geração deste simulado customizado pode levar alguns minutos.
+                                </label>
+                                <div class="invalid-feedback">
+                                    Você precisa aceitar para continuar.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button class="btn gab-btn-primary w-100" type="submit" id="submitGerarSimulado">
+                                <i class="fas fa-magic me-2"></i> Iniciar Geração do Simulado
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="feedbackMessageSimulado" class="mt-4 p-3 d-none gab-alert-info"></div>
+                    
+                    <div id="simuladoStatusSection" class="gab-panel-luminous mt-4 p-4" style="display: none;">
+                        <h3 class="fw-black text-white mb-3"><i class="fas fa-sync-alt fa-spin me-2 gab-text-luminous"></i>Compilando Questões</h3>
+                        <div id="statusSimuladoMessage" class="alert gab-alert-info">
+                            Montando a estrutura do seu simulado customizado...
+                        </div>
+                        <div class="progress gab-progress-bar">
+                            <div id="simuladoProgressBar" class="progress-bar gab-progress-bar-fill" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/simulado/simulado.js"></script>
+</body>
+</html>

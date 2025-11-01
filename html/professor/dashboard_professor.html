@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarita - Dashboard do Professor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .gab-nav-dashboard .nav-link {
+            color: var(--gab-light);
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(148, 210, 189, 0.3);
+            margin-bottom: 5px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        .gab-nav-dashboard .nav-link.active {
+            background-color: var(--gab-text-luminous);
+            color: var(--gab-primary);
+            font-weight: bold;
+            border-color: var(--gab-text-luminous);
+            box-shadow: 0 0 10px rgba(148, 210, 189, 0.7);
+        }
+        .gab-nav-dashboard .nav-link:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="gab-bg-gradient">
+
+    <header class="gab-header shadow-lg p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="Logo Gabarita" class="gab-logo me-3" style="width: 40px; height: 40px;">
+                <h1 class="gab-title-static mb-0 fw-black text-white">Dashboard Professor</h1>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="text-light fw-regular me-3 d-none d-md-block">Prof. Dolphin (Gestor)</span>
+                <a href="/perfil" class="gab-profile-icon" title="Meu Perfil">
+                    <img src="dolphinprofessor.png" alt="Dolphin Professor" class="rounded-circle" style="width: 40px; height: 40px; border: 2px solid #94d2bd;">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-fluid py-5">
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-4 d-none d-md-block">
+                <div class="gab-panel-luminous p-4">
+                    <h5 class="fw-black text-white mb-3">Módulos</h5>
+                    <div class="nav flex-column nav-pills gab-nav-dashboard" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-alunos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-alunos" type="button" role="tab" aria-controls="v-pills-alunos" aria-selected="true"><i class="fas fa-users me-2"></i> Gestão de Alunos</button>
+                        <button class="nav-link" id="v-pills-propostas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-propostas" type="button" role="tab" aria-controls="v-pills-propostas" aria-selected="false"><i class="fas fa-scroll me-2"></i> Criar Propostas</button>
+                        <button class="nav-link" id="v-pills-correcao-tab" data-bs-toggle="pill" data-bs-target="#v-pills-correcao" type="button" role="tab" aria-controls="v-pills-correcao" aria-selected="false"><i class="fas fa-comment-dots me-2"></i> Correção Humana</button>
+                         <button class="nav-link" id="v-pills-admin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-admin" type="button" role="tab" aria-controls="v-pills-admin" aria-selected="false"><i class="fas fa-user-shield me-2"></i> Admin (Usuários)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-9 col-md-8">
+                <ul class="nav nav-pills nav-fill mb-4 d-md-none gab-nav-pills" id="h-pills-tab" role="tablist">
+                     <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#v-pills-alunos" type="button"><i class="fas fa-users"></i> Alunos</button></li>
+                     <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#v-pills-propostas" type="button"><i class="fas fa-scroll"></i> Propostas</button></li>
+                     <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#v-pills-correcao" type="button"><i class="fas fa-comment-dots"></i> Corrigir</button></li>
+                     <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#v-pills-admin" type="button"><i class="fas fa-user-shield"></i> Admin</button></li>
+                </ul>
+                
+                <div class="tab-content" id="v-pills-tabContent">
+                    
+                    <div class="tab-pane fade show active" id="v-pills-alunos" role="tabpanel" aria-labelledby="v-pills-alunos-tab">
+                        <div class="gab-panel-luminous p-4 mb-4">
+                            <h2 class="fw-black text-white mb-3"><i class="fas fa-user-plus me-2 gab-text-luminous"></i>Cadastrar Novo Aluno</h2>
+                            <form id="cadastroAlunoForm" class="row g-3 needs-validation" novalidate>
+                                <div class="col-md-6">
+                                    <label for="nomeAluno" class="form-label text-white">Nome Completo</label>
+                                    <input type="text" class="form-control gab-input-luminous" id="nomeAluno" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="emailAluno" class="form-label text-white">E-mail</label>
+                                    <input type="email" class="form-control gab-input-luminous" id="emailAluno" required>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn gab-btn-primary"><i class="fas fa-user-plus me-2"></i> Cadastrar Aluno</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="gab-panel-luminous p-4">
+                            <h2 class="fw-black text-white mb-3"><i class="fas fa-users me-2 gab-text-luminous"></i>Alunos na Plataforma</h2>
+                            <div class="table-responsive">
+                                <table class="table table-borderless gab-table-historico" id="alunos-list">
+                                    <thead>
+                                        <tr class="text-light fw-regular">
+                                            <th>Nome</th>
+                                            <th>E-mail</th>
+                                            <th>Status</th>
+                                            <th class="text-end">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="tab-pane fade" id="v-pills-admin" role="tabpanel" aria-labelledby="v-pills-admin-tab">
+                        <div class="gab-panel-luminous p-4">
+                            <h2 class="fw-black text-white mb-3"><i class="fas fa-user-shield me-2 gab-text-luminous"></i>Painel Administrativo de Usuários</h2>
+                            <p class="text-light fw-light mb-4">Gerencie o cadastro, ativação e edição de todos os usuários (Alunos e Professores).</p>
+                             <div class="table-responsive">
+                                <table class="table table-borderless gab-table-historico" id="admin-users-list">
+                                    <thead>
+                                        <tr class="text-light fw-regular">
+                                            <th>ID</th>
+                                            <th>Nome/Email</th>
+                                            <th>Tipo</th>
+                                            <th>Ativo</th>
+                                            <th class="text-end">Controle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="v-pills-propostas" role="tabpanel" aria-labelledby="v-pills-propostas-tab">
+                        <div class="gab-panel-luminous p-4">
+                            <h2 class="fw-black text-white mb-3"><i class="fas fa-plus-circle me-2 gab-text-luminous"></i>Criar Nova Proposta (Manual)</h2>
+                            <p class="text-light fw-light mb-4">Crie propostas de redação que a Gabarita pode usar para a correção IA e humana.</p>
+                            <form id="criarPropostaForm" class="row g-3 needs-validation" novalidate>
+                                <div class="col-12">
+                                    <label for="tituloProposta" class="form-label text-white">Título do Tema</label>
+                                    <input type="text" class="form-control gab-input-luminous" id="tituloProposta" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="textoMotivador" class="form-label text-white">Texto Motivador (Corpus de apoio)</label>
+                                    <textarea class="form-control gab-input-luminous" id="textoMotivador" rows="6" placeholder="Insira o texto motivador ou a descrição da proposta..."></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="categoriaProposta" class="form-label text-white">Categoria</label>
+                                    <select class="form-select gab-input-luminous" id="categoriaProposta" required>
+                                        <option value="social">Social</option>
+                                        <option value="ciencia">Ciência</option>
+                                        </select>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn gab-btn-primary"><i class="fas fa-save me-2"></i> Salvar Proposta na Base</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="v-pills-correcao" role="tabpanel" aria-labelledby="v-pills-correcao-tab">
+                        <div class="gab-panel-luminous p-4">
+                            <h2 class="fw-black text-white mb-3"><i class="fas fa-pen-fancy me-2 gab-text-luminous"></i>Fila de Correção Humana</h2>
+                            <p class="text-light fw-light mb-4">Redações marcadas para análise complementar, organizadas por tema. Clique para corrigir.</p>
+
+                            <div class="table-responsive">
+                                <table class="table table-borderless gab-table-historico" id="correcao-fila-list">
+                                    <thead>
+                                        <tr class="text-light fw-regular">
+                                            <th>ID</th>
+                                            <th>Aluno</th>
+                                            <th>Tema</th>
+                                            <th>Nota IA</th>
+                                            <th class="text-end">Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="modal fade" id="correcaoModal" tabindex="-1" aria-labelledby="correcaoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content gab-modal-luminous">
+            
+          <div class="modal-header">
+            <h5 class="modal-title fw-black" id="correcaoModalLabel">Corrigir Redação: <span id="correcaoTema"></span></h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          
+          <div class="modal-body">
+              <p class="text-white fw-regular">Aluno: <span id="correcaoAluno" class="gab-text-luminous"></span> - Nota IA: <span id="correcaoNotaIA"></span></p>
+              
+              <h4 class="fw-black text-white mt-3">Texto Submetido</h4>
+              <div class="gab-panel-luminous p-3 mb-4 bg-dark bg-opacity-50" style="min-height: 200px; max-height: 400px; overflow-y: auto;">
+                  <p class="text-light fw-regular" id="correcaoTextoArea">
+                      </p>
+              </div>
+
+              <h4 class="fw-black text-white mt-3"><i class="fas fa-comment-dots me-2 gab-text-luminous"></i>Seu Feedback Complementar</h4>
+              <form id="feedbackProfessorForm">
+                 <textarea class="form-control gab-input-luminous" id="feedbackProfessor" rows="8" placeholder="Insira aqui o feedback detalhado, sugestões de melhoria e anotações."></textarea>
+                 <div class="form-text text-light fw-light">Este texto será enviado ao aluno via notificação (n8n).</div>
+                 <input type="hidden" id="redacaoIdCorrigir">
+              </form>
+
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm gab-btn-action" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-sm gab-btn-secondary" id="finalizarCorrecaoBtn"><i class="fas fa-check-double me-2"></i> Finalizar e Notificar Aluno</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content gab-modal-luminous">
+            
+          <div class="modal-header">
+            <h5 class="modal-title fw-black" id="editUserModalLabel">Editar Registro do Usuário</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          
+          <div class="modal-body">
+              <form id="editUserForm" class="row g-3 needs-validation" novalidate>
+                  <input type="hidden" id="editUserId">
+                  
+                  <div class="col-12">
+                      <label for="editUserName" class="form-label text-white">Nome Completo</label>
+                      <input type="text" class="form-control gab-input-luminous" id="editUserName" required>
+                  </div>
+                  <div class="col-12">
+                      <label for="editUserEmail" class="form-label text-white">E-mail</label>
+                      <input type="email" class="form-control gab-input-luminous" id="editUserEmail" required>
+                  </div>
+                  
+                  <div class="col-md-6">
+                      <label for="editUserType" class="form-label text-white">Tipo / Papel</label>
+                      <select class="form-select gab-input-luminous" id="editUserType" required>
+                          <option value="Aluno">Aluno</option>
+                          <option value="Professor">Professor</option>
+                          <option value="Admin">Admin</option>
+                      </select>
+                  </div>
+                  
+                  <div class="col-md-6">
+                      <label for="editUserStatus" class="form-label text-white">Status</label>
+                      <select class="form-select gab-input-luminous" id="editUserStatus" required>
+                          <option value="Ativo">Ativo</option>
+                          <option value="Inativo">Inativo</option>
+                      </select>
+                  </div>
+              </form>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm gab-btn-action" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-sm gab-btn-primary" id="saveUserEditBtn"><i class="fas fa-save me-2"></i> Salvar Alterações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/professor/professor.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarita - Histórico de Redações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="gab-bg-gradient">
+
+    <header class="gab-header shadow-lg p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="Logo Gabarita" class="gab-logo me-3" style="width: 40px; height: 40px;">
+                <h1 class="gab-title-static mb-0 fw-black text-white">Seu Histórico</h1>
+            </div>
+            <a href="/perfil" class="gab-profile-icon" title="Meu Perfil">
+                <img src="dolphinicon.png" alt="Dolphin Perfil" class="rounded-circle" style="width: 40px; height: 40px; border: 2px solid #94d2bd;">
+            </a>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-black text-white"><i class="fas fa-list-alt me-2 gab-text-luminous"></i>Minhas Submissões</h2>
+                    <a href="/correcao" class="btn gab-btn-secondary"><i class="fas fa-plus me-2"></i>Nova Redação</a>
+                </div>
+
+                <div class="gab-panel-luminous p-4 table-responsive">
+                    
+                    <table class="table table-borderless gab-table-historico">
+                        <thead>
+                            <tr class="text-light fw-regular">
+                                <th scope="col">Tema</th>
+                                <th scope="col" class="text-nowrap">Data de Envio</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Nota (IA)</th>
+                                <th scope="col" class="text-end">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historico-list">
+                            </tbody>
+                    </table>
+
+                    <div id="empty-state" class="text-center p-5" style="display: none;">
+                        <img src="dolphin.png" alt="Dolphin Vazio" style="width: 100px; opacity: 0.7;">
+                        <h4 class="text-white mt-3 fw-black">Você ainda não tem redações no histórico.</h4>
+                        <p class="text-light fw-light">Que tal enviar a primeira agora? O Dolphin está pronto para ajudar!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content gab-modal-luminous">
+            
+          <div class="modal-header">
+            <h5 class="modal-title fw-black" id="reportModalLabel">Relatório Detalhado da Redação</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          
+          <div class="modal-body">
+            <div id="reportContent">
+                
+                <h3 id="reportTema" class="fw-black gab-text-luminous mb-3"></h3>
+                
+                <div class="row mb-4">
+                    <div class="col-lg-4">
+                        <div class="gab-card-luminous p-3 text-center h-100">
+                            <p class="text-light fw-regular mb-1">NOTA FINAL (IA)</p>
+                            <h1 id="reportNota" class="display-3 fw-black gab-text-luminous">000</h1>
+                            <span id="reportStatusBadge" class="badge bg-success">Corrigido</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                         <div class="gab-panel-luminous p-3 h-100">
+                             <h4 class="fw-black text-white">Visão Geral</h4>
+                             <p class="text-light fw-light" id="reportOverview">Submetido em XX/XX/XXXX. Tempo de processamento: X min.</p>
+                             <ul class="list-unstyled text-light small">
+                                 <li><i class="fas fa-check-circle me-2 gab-text-luminous"></i>Competência I: Argumentação</li>
+                                 <li><i class="fas fa-check-circle me-2 gab-text-luminous"></i>Competência II: Gramática</li>
+                                 </ul>
+                         </div>
+                    </div>
+                </div>
+                
+                <hr class="gab-hr">
+                
+                <div class="mb-4">
+                    <h4 class="fw-black text-white mb-3"><i class="fas fa-robot me-2 gab-text-luminous"></i>Feedback Detalhado da IA</h4>
+                    <div class="gab-panel-luminous p-3">
+                         <p id="reportFeedbackIA" class="text-light fw-regular"></p>
+                    </div>
+                </div>
+                
+                <div id="humanCorrection" style="display: none;">
+                    <h4 class="fw-black text-white mb-3"><i class="fas fa-user-tie me-2 gab-text-luminous"></i>Comentários do Professor</h4>
+                    <div class="gab-panel-luminous p-3 bg-secondary bg-opacity-25">
+                         <p id="reportFeedbackProfessor" class="text-light fw-regular"></p>
+                         <div class="text-end small text-white-50 mt-2">Corrigido por: <span id="reportProfessorNome">Prof. Dolphin</span></div>
+                    </div>
+                </div>
+                
+            </div>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm gab-btn-action" data-bs-dismiss="modal">Fechar Relatório</button>
+            <button type="button" class="btn btn-sm gab-btn-primary"><i class="fas fa-print me-2"></i>Imprimir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/redacao/historico.js"></script>
+</body>
+</html>
