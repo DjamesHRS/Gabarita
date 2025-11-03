@@ -256,4 +256,24 @@ INSERT INTO modelo_redacao (tema, tipo, modelo_atividade_id) VALUES
 -- Inserir dados na tabela atividade_aplicada (usando modelo_atividade_id 1 a 10)
 INSERT INTO atividade_aplicada (titulo_da_aplicacao, data_realizacao, nota, status, modelo_atividade_id) VALUES
 ('Aplicação 1', NOW(), 8.5, 'ativo', 1),
-('Aplicação 2', NOW(), 7.0, 'agendado', 2);
+('Aplicação 2', NOW(), 7.0, 'agendado', 2),
+('Aplicação 3', NOW(), 0.0, 'ativo', 3),  
+('Aplicação 4', NOW(), 0.0, 'ativo', 4),  
+('Aplicação 5', NOW(), 0.0, 'ativo', 5),  
+('Aplicação 6', NOW(), 0.0, 'ativo', 6); 
+
+INSERT INTO atividade_do_aluno (atividade_aplicada_id, aluno_id, texto_redacao) VALUES 
+(1, 1, 'Redação para Aplicação 1. (João)'),  
+(2, 1, 'Redação para Aplicação 2. (João)'),  
+(3, 2, 'Redação para Aplicação 3 (IA). (Maria)'),
+(4, 2, 'Simulado Global concluído. (Maria)'),  
+(5, 3, 'Redação sobre Clima submetida. (Pedro)'),
+(6, 3, 'Simulado Final concluído. (Pedro)'); 
+
+INSERT INTO correcao_professor (nota_final, comentarios, data_da_correcao, atividade_aplicada_id) VALUES 
+(9.0, 'Excelente argumentação na Aplicação 1.', NOW(), 1), 
+(8.2, 'Boa estrutura, mas o tema da Aplicação 2 precisa ser revisado.', NOW(), 2), 
+(7.5, 'Aceitável, mas o uso do ponto final precisa de atenção (Aplicação 3).', NOW(), 3),
+(9.8, 'Perfeito! Maior nota no Simulado Global (Aplicação 4).', NOW(), 4), 
+(6.9, 'Nota baixa devido à falta de profundidade no tema Clima (Aplicação 5).', NOW(), 5), 
+(8.4, 'Bom resultado geral no Simulado Final (Aplicação 6).', NOW(), 6); 
