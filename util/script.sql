@@ -1,6 +1,11 @@
-create database gabarita;
-use gabarita;
+-- 1. APAGA O BANCO ANTIGO (PARA GARANTIR UM COMEÇO LIMPO)
+DROP DATABASE IF EXISTS gabarita;
 
+-- 2. CRIA O NOVO BANCO
+CREATE DATABASE gabarita;
+USE gabarita;
+
+-- 3. CRIA AS TABELAS (Sem caracteres invisíveis)
 CREATE TABLE IF NOT EXISTS aluno (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(255) NOT NULL,
@@ -253,27 +258,31 @@ INSERT INTO modelo_redacao (tema, tipo, modelo_atividade_id) VALUES
 ('Tema 9', 'Argumentativo', 10),
 ('Tema 10', 'Descritivo', 1);
 
--- Inserir dados na tabela atividade_aplicada (usando modelo_atividade_id 1 a 10)
+-- Inserir dados na tabela atividade_aplicada 
 INSERT INTO atividade_aplicada (titulo_da_aplicacao, data_realizacao, nota, status, modelo_atividade_id) VALUES
-('Aplicação 1', NOW(), 8.5, 'ativo', 1),
-('Aplicação 2', NOW(), 7.0, 'agendado', 2),
-('Aplicação 3', NOW(), 0.0, 'ativo', 3),  
-('Aplicação 4', NOW(), 0.0, 'ativo', 4),  
-('Aplicação 5', NOW(), 0.0, 'ativo', 5),  
-('Aplicação 6', NOW(), 0.0, 'ativo', 6); 
+('Aplicação 1', '2025-11-10 23:59:00', 8.5, 'ativo', 1), 
+('Aplicação 2', '2025-11-12 23:59:00', 7.0, 'agendado', 2), 
+('Aplicação 3', '2025-11-15 18:00:00', 0.0, 'ativo', 3), 
+('Aplicação 4', '2025-11-16 18:00:00', 0.0, 'ativo', 4), 
+('Aplicação 5', '2025-11-20 23:59:00', 0.0, 'ativo', 5), 
+('Aplicação 6', '2025-11-22 23:59:00', 0.0, 'ativo', 6); 
 
-INSERT INTO atividade_do_aluno (atividade_aplicada_id, aluno_id, texto_redacao) VALUES 
-(1, 1, 'Redação para Aplicação 1. (João)'),  
-(2, 1, 'Redação para Aplicação 2. (João)'),  
+-- Inserir dados na tabela atividade_do_aluno
+INSERT INTO atividade_do_aluno (atividade_aplicada_id, aluno_id, texto_redacao) VALUES
+(1, 1, 'Redação para Aplicação 1. (João)'),
+(2, 1, 'Redação para Aplicação 2. (João)'),
 (3, 2, 'Redação para Aplicação 3 (IA). (Maria)'),
-(4, 2, 'Simulado Global concluído. (Maria)'),  
+(4, 2, 'Simulado Global concluído. (Maria)'),
 (5, 3, 'Redação sobre Clima submetida. (Pedro)'),
-(6, 3, 'Simulado Final concluído. (Pedro)'); 
+(6, 3, 'Simulado Final concluído. (Pedro)');
 
-INSERT INTO correcao_professor (nota_final, comentarios, data_da_correcao, atividade_aplicada_id) VALUES 
-(9.0, 'Excelente argumentação na Aplicação 1.', NOW(), 1), 
-(8.2, 'Boa estrutura, mas o tema da Aplicação 2 precisa ser revisado.', NOW(), 2), 
-(7.5, 'Aceitável, mas o uso do ponto final precisa de atenção (Aplicação 3).', NOW(), 3),
-(9.8, 'Perfeito! Maior nota no Simulado Global (Aplicação 4).', NOW(), 4), 
-(6.9, 'Nota baixa devido à falta de profundidade no tema Clima (Aplicação 5).', NOW(), 5), 
-(8.4, 'Bom resultado geral no Simulado Final (Aplicação 6).', NOW(), 6); 
+-- Inserir dados na tabela correcao_professor
+INSERT INTO correcao_professor (nota_final, comentarios, data_da_correcao, atividade_aplicada_id) VALUES
+(9.0, 'Excelente argumentação na Aplicação 1.', '2025-11-11 10:00:00', 1), -- Corrigido após o prazo
+(8.2, 'Boa estrutura, mas o tema da Aplicação 2 precisa ser revisado.', '2025-11-13 10:00:00', 2), -- Corrigido após o prazo
+(7.5, 'Aceitável, mas o uso do ponto final precisa de atenção (Aplicação 3).', '2025-11-16 09:00:00', 3), -- Corrigido após o prazo
+(9.8, 'Perfeito! Maior nota no Simulado Global (Aplicação 4).', '2025-11-17 09:00:00', 4), -- Corrigido após o prazo
+(6.9, 'Nota baixa devido à falta de profundidade no tema Clima (Aplicação 5).', '2025-11-21 14:00:00', 5), -- Corrigido após o prazo
+(8.4, 'Bom resultado geral no Simulado Final (Aplicação 6).', '2025-11-23 15:00:00', 6); -- Corrigido após o prazo
+
+
