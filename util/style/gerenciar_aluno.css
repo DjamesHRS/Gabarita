@@ -1,0 +1,159 @@
+/* --- Variáveis de Cores (Paleta Gabarita) --- */
+:root {
+    --gab-primary: #005f73;        /* Azul principal */
+    --gab-secondary: #94d2bd;      /* Verde água */
+    --gab-accent: #2f74a4;         /* Azul claro */
+    --gab-dark: #000000;           /* Preto */
+    --gab-light: #FFFFFF;          /* Branco */
+    --gab-focus: #00618a;          /* Azul foco */
+    --gab-text-luminous: #94d2bd;  /* Texto com efeito luminoso */
+    --gab-blur-intensity: 10px;    /* Intensidade do blur no fundo */
+}
+
+/* --- Tipografia (Simulação HK Grotesk) --- */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--gab-primary), var(--gab-accent));
+    color: var(--gab-light);
+    min-height: 100vh;
+}
+
+/* Títulos e textos */
+.fw-black { font-weight: 900 !important; } /* Para títulos de impacto */
+.fw-regular { font-weight: 400 !important; } /* Para corpo de texto */
+.fw-light { font-weight: 300 !important; } /* Para informações secundárias */
+.fw-extra-light { font-weight: 200 !important; }
+
+/* --- Navbar (Fixa no topo) --- */
+.gab-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-translúcido */
+    backdrop-filter: blur(10px); /* Efeito de desfoque */
+    z-index: 1020;
+    padding: 15px;
+}
+
+.gab-header .navbar-brand {
+    color: var(--gab-light);
+    font-weight: 600;
+}
+
+.gab-header .navbar-nav .nav-link {
+    color: var(--gab-light);
+}
+
+.gab-header .navbar-nav .nav-link:hover {
+    color: var(--gab-primary);
+}
+
+/* --- Card Luminoso --- */
+.gab-card-luminous {
+    background: rgba(255, 255, 255, 0.15); /* Fundo translúcido */
+    border: 1px solid var(--gab-secondary);
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(var(--gab-blur-intensity));
+    -webkit-backdrop-filter: blur(var(--gab-blur-intensity));
+    transition: all 0.3s ease;
+}
+
+.gab-card-luminous:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid var(--gab-text-luminous);
+    box-shadow: 0 0 15px rgba(148, 210, 189, 0.8); /* Efeito luminoso suave */
+}
+
+/* Card de Conteúdo (Botões e Links) */
+.gab-btn-primary {
+    background-color: var(--gab-accent);
+    color: var(--gab-light);
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.gab-btn-primary:hover {
+    background-color: #3b88c4;
+    box-shadow: 0 0 10px rgba(47, 116, 164, 0.7);
+}
+
+/* Botões de Ação */
+.gab-btn-action {
+    background: none;
+    border: 1px solid var(--gab-text-luminous);
+    color: var(--gab-text-luminous);
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.gab-btn-action:hover {
+    background-color: rgba(148, 210, 189, 0.2);
+    color: var(--gab-light);
+}
+
+/* --- Tabela --- */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 0.9rem;
+}
+
+table th {
+    background-color: var(--gab-primary);
+    color: var(--gab-light);
+}
+
+table td {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+table tbody tr:hover {
+    background-color: rgba(148, 210, 189, 0.1); /* Efeito de hover */
+}
+
+/* --- Rodapé --- */
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--gab-light);
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: var(--gab-light);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--gab-primary);
+}
+
+/* --- Responsividade (Ajustes para mobile) --- */
+@media (max-width: 768px) {
+    .gab-header {
+        padding: 10px;
+    }
+    
+    .gab-btn-primary, .gab-btn-action {
+        width: 100%;
+        padding: 10px;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}

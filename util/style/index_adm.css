@@ -1,0 +1,79 @@
+/* Navbar fixada no topo */
+.gab-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1020; /* Para garantir que a navbar fique acima do conteúdo */
+}
+
+/* Ajuste do padding do corpo para não sobrepor a navbar */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #004f5a 0%, #007b83 100%);
+  color: #f8f9fa;
+  min-height: 100vh;
+  padding-top: 80px; /* Ajuste para que o conteúdo não fique sob a navbar */
+}
+
+/* Certifique-se que a navbar tenha espaçamento */
+.gab-title-static {
+  font-weight: 900;
+  color: #fff;
+}
+
+/* Cards */
+.gab-card-luminous {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(148, 210, 189, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(148, 210, 189, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+.gab-card-luminous:hover {
+  border-color: rgba(148, 210, 189, 0.8);
+  box-shadow: 0 0 30px rgba(148, 210, 189, 0.6);
+}
+
+.gab-card-luminous i {
+  color: var(--gab-text-luminous);
+}
+
+.gab-btn-primary {
+  background-color: var(--gab-accent);
+  color: var(--gab-light);
+  border: none;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.gab-btn-primary:hover {
+  background-color: #3b88c4;
+  box-shadow: 0 0 10px rgba(47, 116, 164, 0.7);
+}
+
+.gab-btn-primary:focus {
+  outline: none;
+}
+
+/* Texto do bem-vindo */
+#welcomeMessage {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .gab-header {
+    text-align: center;
+  }
+
+  .gab-btn-primary {
+    font-size: 0.9rem;
+  }
+}
