@@ -16,7 +16,13 @@ async function verficarLogin() {
     const resposta = await retorno.json();
     if (resposta.status == 'ok'){
         alert('Seja bem vindo!');
-        window.location.href = '../html/aluno/';
+        if (resposta.tipo == "aluno"){
+            window.location.href = '../html/aluno/';
+        }else if (resposta.tipo == "professor"){
+            window.location.href = '../html/professor/';
+        } else{
+            window.location.href = '../html/adm/';
+        }
     }else{
         alert('Credenciais inválidas');
     }
