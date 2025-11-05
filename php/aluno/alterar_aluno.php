@@ -1,7 +1,7 @@
 <?php
     include_once("../../util/conexao.php");
 
-    $retorno = ["status" => "", "mensagem" => "", "data" => [],];
+    $retorno = ["status" => "", "mensagem" => "", "data" => []];
 
     if (isset($_GET['id'])){
         $nome = $_POST['nome'];
