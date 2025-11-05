@@ -1,0 +1,66 @@
+/* ============================
+   GABARITA - Alterar Aluno
+   ============================ */
+
+body {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, #004f5a 0%, #007b83 100%);
+  color: #f8f9fa;
+}
+
+/* Painel central do formulário */
+.gab-panel-luminous {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(148, 210, 189, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+.gab-panel-luminous:hover {
+  border-color: rgba(148, 210, 189, 0.8);
+  box-shadow: 0 0 30px rgba(148, 210, 189, 0.4);
+}
+
+/* Inputs */
+.gab-input-luminous {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(148, 210, 189, 0.3);
+  color: #fff;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+.gab-input-luminous:focus {
+  border-color: rgba(148, 210, 189, 0.8);
+  box-shadow: 0 0 10px rgba(148, 210, 189, 0.5);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* Placeholder */
+.gab-input-luminous::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Botão */
+.gab-btn-action {
+  background-color: #94d2bd;
+  color: #003135;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.gab-btn-action:hover {
+  background-color: #a7e3d1;
+  box-shadow: 0 0 20px rgba(148, 210, 189, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Navbar */
+.gab-header {
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}

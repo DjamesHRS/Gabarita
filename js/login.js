@@ -17,7 +17,7 @@ async function verficarLogin() {
     if (resposta.status == 'ok'){
         alert('Seja bem vindo!');
         if (resposta.tipo == "aluno"){
-            window.location.href = '../html/aluno/';
+            window.location.href = '../html/aluno/perfil.html';
         }else if (resposta.tipo == "professor"){
             window.location.href = '../html/professor/';
         } else{

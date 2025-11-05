@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    
     const alunoData = {
-        nome: "Alice de Souza",
         redacoesSubmetidas: 12,
         notaMedia: 910,
         ultimaAtividade: "28/Out",
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    const userNameElement = document.getElementById('userName');
     const kpiRedacoes = document.getElementById('kpi-redacoes');
     const kpiNotaMedia = document.getElementById('kpi-nota-media');
     const kpiUltimaAtividade = document.getElementById('kpi-ultima-atividade');
@@ -23,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function renderKPIs(data) {
-        if (userNameElement) userNameElement.textContent = `Olá, ${data.nome}!`;
         if (kpiRedacoes) kpiRedacoes.textContent = data.redacoesSubmetidas;
         if (kpiNotaMedia) kpiNotaMedia.textContent = data.notaMedia;
         if (kpiUltimaAtividade) kpiUltimaAtividade.textContent = data.ultimaAtividade;

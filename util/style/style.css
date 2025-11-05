@@ -455,3 +455,7 @@ body {
 /* Status de Usuário */
 .badge-active { background-color: #38c172; color: #fff; }
 .badge-inactive { background-color: #e3342f; color: #fff; }
+
+#btnEditar{
+    text-decoration: none;
+}

@@ -5,9 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
 async function validaSessao(){
     const retorno = await fetch('../../php/aluno/valida_sessao.php');
     const resposta = await retorno.json();
-    console.log(resposta.data);
     if (resposta.status == 'nok'){
-        console.log(resposta); 
         window.location.href = '../../html/login.html';
+    }
+
+    document.getElementById('userName').innerHTML = "Bem vindo, " + resposta.data.nome;
+    const btnEditar = document.getElementById('btnEditar');
+    if (btnEditar && resposta.data.id) {
+        btnEditar.href = `alterar_aluno.html?id=${resposta.data.id}`;
     }
 }
