@@ -67,32 +67,64 @@ body {
 }
 
 /* Card de Conteúdo (Botões e Links) */
+/* --- Estrutura Comum para Botões --- */
+.gab-btn {
+    color: var(--gab-light);         /* Cor do texto */
+    border: none;                    /* Sem borda */
+    border-radius: 8px;              /* Bordas arredondadas */
+    padding: 10px 20px;              /* Espaçamento interno */
+    font-weight: 400;                /* Texto em negrito */
+    transition: all 0.3s ease;       /* Transição suave */
+}
+
+/* Botão Principal (azul) */
 .gab-btn-primary {
-    background-color: var(--gab-accent);
-    color: var(--gab-light);
-    border: none;
-    border-radius: 8px;
-    transition: 0.3s ease;
+    background-color: var(--gab-accent);  /* Cor de fundo */
 }
 
 .gab-btn-primary:hover {
-    background-color: #3b88c4;
-    box-shadow: 0 0 10px rgba(47, 116, 164, 0.7);
+    background-color: #3b88c4;           /* Cor mais clara ao passar o mouse */
+    box-shadow: 0 0 10px rgba(47, 116, 164, 0.7); /* Efeito de brilho suave */
 }
 
-/* Botões de Ação */
+/* Botão de Ação (Verde Água) */
 .gab-btn-action {
-    background: none;
-    border: 1px solid var(--gab-text-luminous);
-    color: var(--gab-text-luminous);
-    font-weight: 400;
-    transition: all 0.3s ease;
+    background: none;                       /* Fundo transparente */
+    border: 1px solid var(--gab-text-luminous);  /* Borda luminosa */
+    color: var(--gab-text-luminous);         /* Cor do texto */
 }
 
 .gab-btn-action:hover {
-    background-color: rgba(148, 210, 189, 0.2);
-    color: var(--gab-light);
+    background-color: rgba(148, 210, 189, 0.2);  /* Cor de fundo no hover */
+    color: var(--gab-light);                    /* Cor do texto no hover */
 }
+
+/* Botão Excluir (vermelho) */
+.gab-btn-danger {
+    background-color: #e3342f;  /* Cor vermelha para o botão de excluir */
+}
+
+.gab-btn-danger:hover {
+    background-color: #cc2f1f;  /* Tom mais claro do vermelho ao passar o mouse */
+    box-shadow: 0 0 10px rgba(227, 52, 47, 0.7); /* Efeito de brilho suave */
+}
+
+/* Botão de Excluir no Modal */
+.modal-footer .btn-danger {
+    background-color: #e3342f;    /* Cor de fundo do botão de excluir */
+    border-color: #e3342f;         /* Cor da borda */
+    color: var(--gab-light);        /* Cor do texto */
+    border-radius: 8px;             /* Bordas arredondadas */
+    transition: all 0.3s ease;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: #cc2f1f;    /* Tom mais claro do vermelho ao passar o mouse */
+    border-color: #cc2f1f;
+    box-shadow: 0 0 10px rgba(227, 52, 47, 0.7); /* Efeito de brilho suave */
+}
+
+
 
 /* --- Tabela --- */
 table {
@@ -155,5 +187,100 @@ footer a:hover {
 
     footer {
         font-size: 0.9rem;
+    }
+}
+
+/* --- Modal --- */
+.modal-content {
+    background: white; /* Fundo escuro com transparência */
+    color: var(--gab-light);          /* Cor do texto */
+    border-radius: 12px;             /* Bordas arredondadas */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
+    backdrop-filter: blur(10px);     /* Efeito de desfoque no fundo */
+    -webkit-backdrop-filter: blur(10px); /* Efeito de desfoque para navegadores Webkit */
+    transition: all 0.3s ease;       /* Transição suave para interações */
+}
+
+/* Cabeçalho do Modal */
+.modal-header {
+    background-color: var(--gab-primary); /* Cor de fundo do cabeçalho */
+    color: var(--gab-light);              /* Cor do texto */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* Fechar Botão no Modal */
+.modal-header .btn-close {
+    color: var(--gab-light); /* Cor do ícone de fechar */
+    opacity: 1;               /* Certifica-se que o botão de fechar é visível */
+}
+
+.modal-header .btn-close:hover {
+    color: var(--gab-accent); /* Efeito de hover no ícone de fechar */
+}
+
+/* Corpo do Modal */
+.modal-body {
+    background-color: var(--gab-primary); /* Fundo translúcido */
+}
+
+.modal-footer {
+    background-color: var(--gab-primary); /* Fundo translúcido */
+}
+
+/* Botões no Modal */
+.modal-footer .btn-primary {
+    background-color: var(--gab-accent);  /* Cor de fundo do botão */
+    border-color: var(--gab-accent);      /* Cor da borda */
+    color: var(--gab-light);              /* Cor do texto */
+    border-radius: 8px;                   /* Bordas arredondadas */
+    transition: all 0.3s ease;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #3b88c4; /* Cor mais clara ao passar o mouse */
+    border-color: #3b88c4;
+    box-shadow: 0 0 10px rgba(47, 116, 164, 0.7); /* Efeito de brilho suave */
+}
+
+/* Botão de Fechar no Modal */
+.modal-footer .btn-danger {
+    border-color: var(--gab-dark);        /* Cor da borda */
+    color: var(--gab-light);               /* Cor do texto */
+    border-radius: 8px;                    /* Bordas arredondadas */
+    transition: all 0.3s ease;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: #e3342f; /* Tom mais claro do vermelho */
+    border-color: #e3342f;
+    box-shadow: 0 0 10px rgba(227, 52, 47, 0.7); /* Efeito de brilho suave */
+}
+
+/* --- Botão Criar Novo (Modal) --- */
+button[data-bs-toggle="modal"] {
+    background-color: var(--gab-accent);  /* Cor de fundo */
+    color: var(--gab-light);              /* Cor do texto */
+    border: none;                         /* Sem borda */
+    border-radius: 8px;                   /* Bordas arredondadas */
+    padding: 10px 20px;                   /* Espaçamento interno */
+    font-weight: 600;                     /* Texto em negrito */
+    transition: all 0.3s ease;
+}
+
+button[data-bs-toggle="modal"]:hover {
+    background-color: #3b88c4; /* Tom mais claro ao passar o mouse */
+    box-shadow: 0 0 10px rgba(47, 116, 164, 0.7); /* Efeito de brilho suave */
+}
+
+/* --- Modal no Mobile --- */
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 90%;
+        margin: 1.75rem auto; /* Ajusta a margem do modal em telas pequenas */
+    }
+
+    .modal-header h4 {
+        font-size: 1.25rem; /* Ajuste o tamanho do título no modal */
     }
 }

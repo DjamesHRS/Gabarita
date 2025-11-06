@@ -6,7 +6,7 @@ async function validaSessao(){
     const retorno = await fetch('../../php/aluno/valida_sessao.php');
     const resposta = await retorno.json();
     if (resposta.status == 'nok'){
-        window.location.href = '../../html/login.html';
+        window.location.href = '../login.html';
     }
 
     document.getElementById('userName').innerHTML = "Bem vindo, " + resposta.data.nome;

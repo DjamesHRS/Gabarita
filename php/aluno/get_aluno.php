@@ -6,7 +6,7 @@
         $stmt = $conexao->prepare('SELECT * FROM aluno WHERE id = ?');
         $stmt->bind_param('i', $id);
     } else{
-        $stmt = $conexao->prepare('SELECT * FROM aluno');
+        $stmt = $conexao->prepare('SELECT * FROM aluno ORDER BY nome');
     }
     $stmt->execute();
 

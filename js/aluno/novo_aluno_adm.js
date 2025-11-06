@@ -21,14 +21,14 @@ async function novoAluno() {
         fd.append('data_cadastro', data_cadastro);
         fd.append('status', status);
     
-        const retorno = await fetch("../php/aluno/novo_aluno.php",{
+        const retorno = await fetch("../../php/aluno/novo_aluno.php",{
             method: "POST",
             body: fd
         });
         const resposta = await retorno.json();
         if(resposta.status == "ok"){
             alert("Sucesso! " + resposta.mensagem);
-            window.location.href = "login.html";
+            window.location.href = "gerenciar_aluno.html";
         }else{
             alert("Erro! " + resposta.mensagem);
         }

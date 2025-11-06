@@ -5,7 +5,7 @@ DROP DATABASE IF EXISTS gabarita;
 CREATE DATABASE gabarita;
 USE gabarita;
 
--- 3. CRIA AS TABELAS (Sem caracteres invisíveis)
+-- 3. CRIA AS TABELAS (Agora com ON DELETE e ON UPDATE CASCADE)
 CREATE TABLE IF NOT EXISTS aluno (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(255) NOT NULL,
@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS conteudo (
   descricao TEXT NOT NULL,
   disciplina_id INT NOT NULL,
   FOREIGN KEY (disciplina_id) REFERENCES disciplina(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS questao (
@@ -61,6 +63,8 @@ CREATE TABLE IF NOT EXISTS questao (
   alternativas JSON NOT NULL,
   professor_id INT NOT NULL,
   FOREIGN KEY (professor_id) REFERENCES professor(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS modelo_atividade (
@@ -70,6 +74,8 @@ CREATE TABLE IF NOT EXISTS modelo_atividade (
   status ENUM("nao_inciada", "aberta", "encerrada") NOT NULL,
   professor_id INT NOT NULL,
   FOREIGN KEY (professor_id) REFERENCES professor(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS modelo_simulado (
@@ -78,6 +84,8 @@ CREATE TABLE IF NOT EXISTS modelo_simulado (
   descricao TEXT NOT NULL,
   modelo_atividade_id INT NOT NULL,
   FOREIGN KEY (modelo_atividade_id) REFERENCES modelo_atividade(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS modelo_redacao (
@@ -86,6 +94,8 @@ CREATE TABLE IF NOT EXISTS modelo_redacao (
   tipo VARCHAR(255) NOT NULL,
   modelo_atividade_id INT NOT NULL,
   FOREIGN KEY (modelo_atividade_id) REFERENCES modelo_atividade(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS atividade_aplicada (
@@ -96,6 +106,8 @@ CREATE TABLE IF NOT EXISTS atividade_aplicada (
   status ENUM('agendado', 'ativo', 'encerrado') NOT NULL,
   modelo_atividade_id INT NOT NULL,
   FOREIGN KEY (modelo_atividade_id) REFERENCES modelo_atividade(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS correcao_professor (
@@ -105,6 +117,8 @@ CREATE TABLE IF NOT EXISTS correcao_professor (
   data_da_correcao DATETIME NOT NULL,
   atividade_aplicada_id INT NOT NULL UNIQUE,
   FOREIGN KEY (atividade_aplicada_id) REFERENCES atividade_aplicada(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS correcao_ia (
@@ -114,22 +128,32 @@ CREATE TABLE IF NOT EXISTS correcao_ia (
   data_da_correcao DATETIME NOT NULL,
   atividade_aplicada_id INT NOT NULL UNIQUE,
   FOREIGN KEY (atividade_aplicada_id) REFERENCES atividade_aplicada(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS conteudo_da_questao (
   questao_id INT NOT NULL,
   conteudo_id INT NOT NULL,
   PRIMARY KEY (questao_id, conteudo_id),
-  FOREIGN KEY (questao_id) REFERENCES questao(id),
+  FOREIGN KEY (questao_id) REFERENCES questao(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
   FOREIGN KEY (conteudo_id) REFERENCES conteudo(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS questao_do_simulado (
   questao_id INT,
   modelo_simulado_id INT,
   PRIMARY KEY (questao_id, modelo_simulado_id),
-  FOREIGN KEY (questao_id) REFERENCES questao(id),
+  FOREIGN KEY (questao_id) REFERENCES questao(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
   FOREIGN KEY (modelo_simulado_id) REFERENCES modelo_simulado(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS atividade_do_aluno (
@@ -137,8 +161,12 @@ CREATE TABLE IF NOT EXISTS atividade_do_aluno (
   aluno_id INT,
   texto_redacao TEXT NULL,
   PRIMARY KEY (atividade_aplicada_id, aluno_id),
-  FOREIGN KEY (atividade_aplicada_id) REFERENCES atividade_aplicada(id),
+  FOREIGN KEY (atividade_aplicada_id) REFERENCES atividade_aplicada(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
   FOREIGN KEY (aluno_id) REFERENCES aluno(id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
 
 -- Inserir dados na tabela disciplina
@@ -284,5 +312,3 @@ INSERT INTO correcao_professor (nota_final, comentarios, data_da_correcao, ativi
 (9.8, 'Perfeito! Maior nota no Simulado Global (Aplicação 4).', '2025-11-17 09:00:00', 4), -- Corrigido após o prazo
 (6.9, 'Nota baixa devido à falta de profundidade no tema Clima (Aplicação 5).', '2025-11-21 14:00:00', 5), -- Corrigido após o prazo
 (8.4, 'Bom resultado geral no Simulado Final (Aplicação 6).', '2025-11-23 15:00:00', 6); -- Corrigido após o prazo
-
-

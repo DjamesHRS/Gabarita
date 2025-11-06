@@ -46,7 +46,7 @@ async function carregarLista() {
                     <td>${obj.data_de_cadastro}</td>
                     <td>
                         <!-- Botão Alterar -->
-                        <a href='alterar_aluno.html?id=${obj.id}' class="btn gab-btn-primary btn-sm me-2">
+                        <a href='alterar_aluno_adm.html?id=${obj.id}' class="btn gab-btn-primary btn-sm me-2">
                             <i class="fas fa-edit me-2"></i>Alterar
                         </a>
                         <!-- Botão Excluir -->
