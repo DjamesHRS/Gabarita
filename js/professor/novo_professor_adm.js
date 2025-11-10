@@ -7,7 +7,7 @@ async function novoAluno() {
     var email = document.getElementById('email').value;
     var senha = document.getElementById('senha').value;
     var cpf = document.getElementById('cpf').value;
-    var data_nascimento = document.getElementById('data_nascimento').value;
+    var minibiografia = document.getElementById('minibiografia').value;
     var data_cadastro = new Date().toISOString().slice(0, 19).replace('T', ' ');
     var status = "ativo";
 
@@ -17,18 +17,18 @@ async function novoAluno() {
         fd.append('email', email);
         fd.append('senha', senha);
         fd.append('cpf', cpf);
-        fd.append('data_nascimento', data_nascimento);
+        fd.append('minibiografia', minibiografia);
         fd.append('data_cadastro', data_cadastro);
         fd.append('status', status);
 
-        const retorno = await fetch("../php/professor/novo_professor.php",{
+        const retorno = await fetch("../../php/professor/novo_professor.php",{
             method: "POST",
             body: fd
         });
         const resposta = await retorno.json();
         if(resposta.status == "ok"){
             alert("Sucesso! " + resposta.mensagem);
-            window.location.href = "login.html";
+            window.location.href = "gerenciar_professor.html";
         }else{
             alert("Erro! " + resposta.mensagem);
         }
