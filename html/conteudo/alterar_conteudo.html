@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabarita - Alterar Conteúdo</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../util/style/style.css">
+  <link rel="stylesheet" href="../../util/style/alterar_aluno.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="gab-bg-gradient">
+
+  <!-- Navbar -->
+  <header class="gab-header shadow-lg p-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <img src="../../util/img/GABARITA_-_DESIGNS__1_-removebg-preview.png"
+             alt="Logo Gabarita" class="gab-logo me-3" style="width: 40px; height: 40px;">
+        <h1 class="gab-title-static mb-0 fw-black text-white">Alterar Cadastro</h1>
+      </div>
+      <a href="gerenciar_conteudo.html" class="btn gab-btn-secondary btn-sm d-flex align-items-center gap-2">
+        <i class="fas fa-arrow-left"></i><span>Voltar</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main class="container py-5 d-flex justify-content-center">
+    <div class="gab-panel-luminous p-4 w-100" style="max-width: 550px;">
+      <h2 class="fw-black text-white text-center mb-4"><i class="fas fa-user-edit me-2 gab-text-luminous"></i>Editar Informações</h2>
+      
+      <form id="formAlterar">
+        <input type="hidden" id="id" name="id">
+        
+            <div class="mb-4">
+                <label for="disciplina" class="form-label text-light">Disciplina</label>
+                <select name="disciplina" id="disciplina" class="form-control gab-input-luminous" required>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="nome" class="form-label">Nome:</label>
+              <input type="text" class="form-control" id="nome" placeholder="Informe o nome do conteúdo" name="nome" required>
+            </div>
+            <div class="mb-3">
+              <label for="descricao" class="form-label">Descrição:</label>
+              <input type="text" class="form-control" id="descricao" placeholder="Informe a descrição do conteúdo" name="descricao" required>
+            </div>
+
+        <button type="button" id="enviar" class="btn gab-btn-action w-100 py-2 fw-bold">
+          <i class="fas fa-save me-2"></i>Salvar Alterações
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/conteudo/alterar_conteudo.js"></script>
+    <script src="../../js/adm/valida_sessao.js"></script>
+</body>
+</html>
