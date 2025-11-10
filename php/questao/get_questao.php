@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
             q.nivel_de_dificuldade,
             q.alternativas,
             q.gabarito,
+            q.conteudo_id,
             p.nome AS professor_nome,
             c.nome AS conteudo_nome
         FROM questao q
@@ -34,6 +35,7 @@ if (isset($_GET['id'])) {
             q.nivel_de_dificuldade,
             q.alternativas,
             q.gabarito,
+            q.conteudo_id, 
             p.nome AS professor_nome,
             c.nome AS conteudo_nome
         FROM questao q
@@ -45,7 +47,6 @@ if (isset($_GET['id'])) {
     $stmt->bind_param('i', $id_professor);
 
 } else {
-    // 🔹 Nenhum parâmetro informado
     $retorno = ["status" => "erro", "mensagem" => "Parâmetro ausente (id ou id_professor).", "data" => []];
     header("Content-type: application/json; charset=utf-8");
     echo json_encode($retorno);
