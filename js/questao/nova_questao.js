@@ -2,6 +2,29 @@ document.getElementById("novo").addEventListener('click', function(event){
     event.preventDefault();
     novaQuestao();
 });
+document.getElementById("novaQuestao").addEventListener('click', function(event){
+    event.preventDefault();
+    carregarConteudos();
+});
+
+async function carregarConteudos() {
+    const retorno = await fetch("../../php/conteudo/get_conteudo.php");
+    const resposta = await retorno.json();
+
+    const select = document.getElementById("conteudo");
+    select.innerHTML = '<option value="">Selecione um conteudo</option>';
+
+    if (resposta.status === "ok" && Array.isArray(resposta.data)) {
+        resposta.data.forEach(c => {
+            const option = document.createElement("option");
+            option.value = c.id;
+            option.textContent = c.nome;
+            select.appendChild(option);
+        });
+    } else {
+        console.warn("Nenhum conteúdo encontrado.");
+    }
+}
 
 async function novaQuestao() {
     var enunciado = document.getElementById('enunciado').value;
@@ -9,8 +32,11 @@ async function novaQuestao() {
     var nivel = document.getElementById('nivel').value;
     var conteudo = document.getElementById('conteudo').value;
     var gabarito = document.getElementById('gabarito') ? document.getElementById('gabarito').value : '';
-    var professor_id = sessionStorage.getItem("professor_id"); // puxado da sessão do professor
+    var professor_id = sessionStorage.getItem("professor_id");
     var alternativas = [];
+
+    console.log(professor_id);
+    
 
     // Pegar alternativas se for múltipla escolha
     if (tipo === "multipla_escolha") {
@@ -20,7 +46,7 @@ async function novaQuestao() {
     }
 
     // Validação básica
-    if (enunciado.length > 0 && tipo.length > 0 && nivel.length > 0 && gabarito.length > 0 && professor_id) {
+    if (enunciado.length > 0 && tipo.length > 0 && nivel.length > 0 && gabarito.length > 0) {
 
         const fd = new FormData();
         fd.append('enunciado', enunciado);

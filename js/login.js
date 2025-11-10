@@ -19,7 +19,10 @@ async function verficarLogin() {
         if (resposta.tipo == "aluno"){
             window.location.href = '../html/aluno/perfil.html';
         }else if (resposta.tipo == "professor"){
-            window.location.href = '../html/professor/';
+            // pega o id do professor retornado no login
+            const idProfessor = resposta.data[0].id;
+            // redireciona com o ID na URL
+            window.location.href = `../html/professor/index.html?id=${idProfessor}`;
         } else{
             window.location.href = '../html/adm/';
         }

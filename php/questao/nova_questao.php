@@ -5,7 +5,7 @@ session_start();
 $retorno = ["status" => "", "mensagem" => "", "data" => []];
 
 // Verifica se o professor está logado
-if (!isset($_SESSION['professor_id'])) {
+if (!isset($_SESSION['professor'])) {
     $retorno = ["status" => "erro", "mensagem" => "Sessão inválida. Faça login novamente.", "data" => []];
     header("Content-type: application/json;charset=utf-8");
     echo json_encode($retorno);
@@ -15,10 +15,10 @@ if (!isset($_SESSION['professor_id'])) {
 $enunciado = $_POST['enunciado'] ?? '';
 $tipo = $_POST['tipo'] ?? '';
 $nivel = $_POST['nivel'] ?? '';
-$conteudo = $_POST['conteudo'] ?? '';
+$conteudo_id = $_POST['conteudo'] ?? '';
 $gabarito = $_POST['gabarito'] ?? '';
 $alternativas = $_POST['alternativas'] ?? '[]';
-$professor_id = $_SESSION['professor_id'];
+$professor_id = $_POST['professor_id'];
 
 // Verificação mínima
 if (empty($enunciado) || empty($tipo) || empty($nivel) || empty($gabarito)) {
@@ -28,8 +28,8 @@ if (empty($enunciado) || empty($tipo) || empty($nivel) || empty($gabarito)) {
     exit;
 }
 
-$stmt = $conexao->prepare('INSERT INTO questao (enunciado, tipo, nivel_de_dificuldade, gabarito, alternativas, professor_id) VALUES (?, ?, ?, ?, ?, ?)');
-$stmt->bind_param('sssssi', $enunciado, $tipo, $nivel, $gabarito, $alternativas, $professor_id);
+$stmt = $conexao->prepare('INSERT INTO questao (enunciado, tipo, nivel_de_dificuldade, gabarito, alternativas, professor_id, conteudo_id) VALUES (?, ?, ?, ?, ?, ?, ?)');
+$stmt->bind_param('sssssii', $enunciado, $tipo, $nivel, $gabarito, $alternativas, $professor_id, $conteudo_id);
 $stmt->execute();
 
 if ($stmt->affected_rows > 0) {

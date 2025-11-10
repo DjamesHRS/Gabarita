@@ -61,8 +61,10 @@ CREATE TABLE IF NOT EXISTS questao (
   nivel_de_dificuldade ENUM('facil', 'medio', 'dificil', 'expert') NOT NULL,
   gabarito TEXT NOT NULL,
   alternativas JSON NOT NULL,
+  conteudo_id INT NOT NULL,
   professor_id INT NOT NULL,
-  FOREIGN KEY (professor_id) REFERENCES professor(id)
+  FOREIGN KEY (professor_id) REFERENCES professor(id),
+  FOREIGN KEY (conteudo_id) REFERENCES conteudo(id)
   ON DELETE CASCADE
   ON UPDATE CASCADE
 );
@@ -234,18 +236,18 @@ INSERT INTO conteudo (nome, descricao, disciplina_id) VALUES
 ('Literatura Brasileira', 'Conteúdo sobre literatura do Brasil', 9),
 ('Atividades Físicas', 'Conteúdo sobre exercícios e esportes', 10);
 
--- Inserir dados na tabela questao (usar professor_id de 1 a 10 conforme inserido)
-INSERT INTO questao (enunciado, tipo, nivel_de_dificuldade, gabarito, alternativas, professor_id) VALUES
-('Qual o resultado de 2+2?', 'multipla_escolha', 'facil', '4', JSON_ARRAY('1','2','3','4'), 1),
-('Complete a frase: Eu ___ feliz.', 'dissertativa', 'facil', 'estou', JSON_ARRAY(), 2),
-('A Revolução Francesa ocorreu em que século?', 'multipla_escolha', 'medio', 'XVIII', JSON_ARRAY('XVII','XVIII','XIX','XX'), 3),
-('Qual o continente onde fica o Brasil?', 'multipla_escolha', 'facil', 'América do Sul', JSON_ARRAY('África','América do Norte','América do Sul','Europa'), 4),
-('Quem formulou as Leis de Newton?', 'multipla_escolha', 'medio', 'Isaac Newton', JSON_ARRAY('Galileu','Isaac Newton','Einstein','Tesla'), 5),
-('Qual o símbolo químico da água?', 'multipla_escolha', 'facil', 'H2O', JSON_ARRAY('CO2','H2O','NaCl','O2'), 6),
-('O que é DNA?', 'dissertativa', 'medio', 'Ácido desoxirribonucleico', JSON_ARRAY(), 7),
-('Como se diz "casa" em inglês?', 'multipla_escolha', 'facil', 'House', JSON_ARRAY('House','Car','Dog','Tree'), 8),
-('Quem escreveu "Dom Casmurro"?', 'multipla_escolha', 'medio', 'Machado de Assis', JSON_ARRAY('Machado de Assis','José de Alencar','Carlos Drummond','Cecília Meireles'), 9),
-('Qual esporte é praticado com uma bola e duas cestas?', 'multipla_escolha', 'facil', 'Basquete', JSON_ARRAY('Futebol','Basquete','Vôlei','Handebol'), 10);
+-- Inserir dados na tabela questao (usando professor_id de 1 a 10 conforme inserido e conteudo_id correspondente)
+INSERT INTO questao (enunciado, tipo, nivel_de_dificuldade, gabarito, alternativas, professor_id, conteudo_id) VALUES
+('Qual o resultado de 2+2?', 'multipla_escolha', 'facil', '4', JSON_ARRAY('1','2','3','4'), 1, 1), -- Álgebra Básica
+('Complete a frase: Eu ___ feliz.', 'dissertativa', 'facil', 'estou', JSON_ARRAY(), 2, 2), -- Gramática
+('A Revolução Francesa ocorreu em que século?', 'multipla_escolha', 'medio', 'XVIII', JSON_ARRAY('XVII','XVIII','XIX','XX'), 3, 3), -- Revolução Francesa
+('Qual o continente onde fica o Brasil?', 'multipla_escolha', 'facil', 'América do Sul', JSON_ARRAY('África','América do Norte','América do Sul','Europa'), 4, 4), -- Cartografia
+('Quem formulou as Leis de Newton?', 'multipla_escolha', 'medio', 'Isaac Newton', JSON_ARRAY('Galileu','Isaac Newton','Einstein','Tesla'), 5, 5), -- Leis de Newton
+('Qual o símbolo químico da água?', 'multipla_escolha', 'facil', 'H2O', JSON_ARRAY('CO2','H2O','NaCl','O2'), 6, 6), -- Tabela Periódica
+('O que é DNA?', 'dissertativa', 'medio', 'Ácido desoxirribonucleico', JSON_ARRAY(), 7, 7), -- Genética
+('Como se diz "casa" em inglês?', 'multipla_escolha', 'facil', 'House', JSON_ARRAY('House','Car','Dog','Tree'), 8, 8), -- Vocabulário Básico
+('Quem escreveu "Dom Casmurro"?', 'multipla_escolha', 'medio', 'Machado de Assis', JSON_ARRAY('Machado de Assis','José de Alencar','Carlos Drummond','Cecília Meireles'), 9, 9), -- Literatura Brasileira
+('Qual esporte é praticado com uma bola e duas cestas?', 'multipla_escolha', 'facil', 'Basquete', JSON_ARRAY('Futebol','Basquete','Vôlei','Handebol'), 10, 10); -- Atividades Físicas
 
 -- Inserir dados na tabela modelo_atividade (usando professor_id 1 a 10)
 INSERT INTO modelo_atividade (tipo, data_de_criacao, status, professor_id) VALUES
