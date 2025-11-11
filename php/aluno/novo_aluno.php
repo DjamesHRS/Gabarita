@@ -4,6 +4,10 @@
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    $cpf = $_POST['cpf'];
+    $data_nascimento = $_POST['data_nascimento'];
+    $data_cadastro = $_POST['data_cadastro'];
+    $status = $_POST['status'];
 
 
     $retorno = ["status" => "", "mensagem" => "", "data" => []];
