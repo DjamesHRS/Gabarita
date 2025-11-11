@@ -8,13 +8,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $stmt = $conexao->prepare('
         SELECT 
-            q.id,
-            q.enunciado,
-            q.tipo,
-            q.nivel_de_dificuldade,
-            q.alternativas,
-            q.gabarito,
-            q.conteudo_id,
+            q.*,
             p.nome AS professor_nome,
             c.nome AS conteudo_nome
         FROM questao q
@@ -29,13 +23,7 @@ if (isset($_GET['id'])) {
     $id_professor = $_GET['id_professor'];
     $stmt = $conexao->prepare('
         SELECT 
-            q.id,
-            q.enunciado,
-            q.tipo,
-            q.nivel_de_dificuldade,
-            q.alternativas,
-            q.gabarito,
-            q.conteudo_id, 
+            q.*, 
             p.nome AS professor_nome,
             c.nome AS conteudo_nome
         FROM questao q

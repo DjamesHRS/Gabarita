@@ -67,6 +67,7 @@ async function fase1(id) {
                 listaAlt = [];
             }
         }
+        
         // Preenche inputs .alternativa na ordem (A, B, C, D, E)
         const inputsAlt = document.querySelectorAll('.alternativa');
         for (let i = 0; i < inputsAlt.length; i++) {
